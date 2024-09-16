@@ -1,12 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {RouterLink, RouterOutlet} from "@angular/router";
+import {UserModel} from "../../models/user/user.model";
+import {NgForOf} from "@angular/common";
+import {UserComponent} from "../user/user.component";
 
 @Component({
-  selector: 'user-weather',
+  selector: 'saved-users-list',
   standalone: true,
-  imports: [],
-  templateUrl: './user-weather.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    RouterLink,
+    RouterOutlet,
+    NgForOf,
+    UserComponent
+  ],
+  templateUrl: './saved-users-list.component.html'
 })
-export class UserWeatherComponent {
-  title = 'user-weather';
+export class SavedUsersListComponent implements OnInit {
+  users: UserModel[] = [];
+
+  ngOnInit(): void {
+    const savedUsers = localStorage.getItem('users');
+    if (savedUsers) {
+      this.users = JSON.parse(savedUsers);
+    }
+  }
 }

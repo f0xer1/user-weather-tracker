@@ -1,0 +1,15 @@
+<div class="d-flex align-items-center" style="margin-bottom: 10px">
+  <img [src]="user.profileImage" alt="{{user.name}}" class="rounded me-3" />
+  <h5 class="mb-0">{{ user.name }}</h5>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item py-2">
+    <strong>Gender:</strong> {{ user.gender }}
+  </li>
+  <li class="list-group-item py-2">
+    <strong>Email:</strong> {{ user.email }}
+  </li>
+  <li class="list-group-item py-2">
+    <strong>Location:</strong> {{ user.location.city }}, {{ user.location.state }}, {{ user.location.country }}
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a routerLink="/" class="navbar-brand">UserWeather</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="router.url !== '/saved-users-list'">
+        <a routerLink="/saved-users-list" class="nav-link">Saved</a>
+      </li>
+      <li class="nav-item" *ngIf="router.url !== '/user-weather'">
+        <a routerLink="/user-weather" class="nav-link">UserModel</a>
+      </li>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
