@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserModel } from "../../models/user/user.model";
+import { User } from "../../models/user/user.model";
 
 @Component({
   selector: 'app-user',
@@ -7,5 +7,5 @@ import { UserModel } from "../../models/user/user.model";
   templateUrl: './user.component.html'
 })
 export class UserComponent {
-  @Input() user!: UserModel;
+  @Input() user!: User;
 }

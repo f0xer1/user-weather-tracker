@@ -1,17 +1,19 @@
-<div class="mt-3 border-top pt-3">
-  <h6 class="mb-1"><strong>Current Weather:</strong></h6>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item py-2">
-      <strong>Temperature:</strong> {{ weather.temperature }} °C
-    </li>
-    <li class="list-group-item py-2">
-      <strong>Wind Speed:</strong> {{ weather.windSpeed }} km/h
-    </li>
-    <li class="list-group-item py-2">
-      <strong>Wind Direction:</strong> {{ weather?.windDirection }} °
-    </li>
-    <li class="list-group-item py-2">
-      <strong>Time:</strong> {{ weather.time }}
-    </li>
-  </ul>
+<div class="rounded-4 p-3" >
+  <div class="d-flex align-items-center">
+    <div class="flex-grow-1">
+      <div>
+        <strong>Temperature:</strong> {{weather.currentWeather.temperature }} °C
+      </div>
+      <div>
+        <strong>Date:</strong> {{ weatherDate }}
+      </div>
+      <div>
+        <p class="text-muted mb-0">Highest: {{weatherHighestTemperature}}</p>
+        <p class="text-muted mb-0">Lowest: {{weatherLowestTemperature}}</p>
+      </div>
+    </div>
+    <div class="position-relative ms-auto ">
+      <img [src]="weatherIcon" class="border-0 bg-info" width="60" height="60" alt="Weather picture" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    </div>
+  </div>
 </div>

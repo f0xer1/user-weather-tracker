@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {UserModel} from "../../models/user/user.model";
 import {NgForOf} from "@angular/common";
 import {UserComponent} from "../user/user.component";
+import {User} from "../../models/user/user.model";
 
 @Component({
   selector: 'saved-users-list',
@@ -16,7 +16,7 @@ import {UserComponent} from "../user/user.component";
   templateUrl: './saved-users-list.component.html'
 })
 export class SavedUsersListComponent implements OnInit {
-  users: UserModel[] = [];
+  users: User[] = [];
 
   ngOnInit(): void {
     const savedUsers = localStorage.getItem('users');

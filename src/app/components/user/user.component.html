@@ -1,15 +1,13 @@
-<div class="d-flex align-items-center" style="margin-bottom: 10px">
-  <img [src]="user.profileImage" alt="{{user.name}}" class="rounded me-3" />
-  <h5 class="mb-0">{{ user.name }}</h5>
+<div class=" rounded-4  p-3">
+  <div class="d-flex flex-column flex-sm-row">
+    <div class="position-relative me-sm-3 mb-3 mb-sm-0 align-self-center">
+      <img [src]="user.picture.large" alt="{{user.name}}" class="rounded-circle" style="width: 80px; height: 80px;">
+    </div>
+    <div class="flex-grow-1">
+      <h5 class="mb-2 fw-bold">{{ user.name.first + ' ' + user.name.last }}</h5>
+      <p class="mb-1 small"><strong>Gender:</strong> {{ user.gender }}</p>
+      <p class="mb-1 small"><strong>Location:</strong> {{ user.location.city }}, {{ user.location.state }}, {{ user.location.country }}</p>
+      <p class="mb-1 small"><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+  </div>
 </div>
-<ul class="list-group list-group-flush">
-  <li class="list-group-item py-2">
-    <strong>Gender:</strong> {{ user.gender }}
-  </li>
-  <li class="list-group-item py-2">
-    <strong>Email:</strong> {{ user.email }}
-  </li>
-  <li class="list-group-item py-2">
-    <strong>Location:</strong> {{ user.location.city }}, {{ user.location.state }}, {{ user.location.country }}
-  </li>
-</ul>

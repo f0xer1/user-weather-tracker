@@ -1,21 +1,27 @@
 <div class="container-fluid py-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6">
-      <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 300px;">
+    <div class="col-12 col-md-8 col-lg-6 d-flex justify-content-center align-items-center" style="min-height: 300px;">
+      <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100%;">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
 
-      <div *ngIf="!isLoading" class="card shadow-lg border-0 rounded-lg overflow-hidden">
-        <div class="card-body bg-light p-4">
+      <div *ngIf="!isLoading" class="card shadow-lg border-0 rounded-lg overflow-hidden mx-auto"
+           style="max-width: 500px; background-color: #f0f0f0; color: #333;">
+        <div class="card-body p-4">
           <app-user [user]="user"></app-user>
           <app-weather [weather]="weather"></app-weather>
-          <div class="d-flex justify-content-end mt-3">
-            <button class="btn btn-outline-primary" (click)="save()">Save</button>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-secondary" (click)="save()" style="border-color: #ccc; color: #333;">Save
+            </button>
           </div>
         </div>
+        <app-user-map [user]="user"></app-user-map>
       </div>
     </div>
   </div>
 </div>
+
+
