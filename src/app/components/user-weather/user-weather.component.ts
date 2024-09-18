@@ -7,7 +7,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {UserComponent} from "../user/user.component";
 import {WeatherComponent} from "../weather/weather.component";
 import {WeatherData} from "../../models/weather/weather.model";
-import {interval, Subscription, switchMap} from "rxjs";
+import { Subscription} from "rxjs";
 import {WeatherService} from "../../services/weather.service";
 import {UserMapComponent} from "../user-map/user-map.component";
 
@@ -125,15 +125,18 @@ export class UserWeatherComponent implements OnInit, OnDestroy {
   users: User[] = [];
   private userSubscription: Subscription = new Subscription();
   private weatherSubscription: Subscription = new Subscription();
-  private weatherUpdateInterval: Subscription = new Subscription();
 
-  constructor(private userService: UserService, private weatherService: WeatherService) {}
+  constructor(private userService: UserService, private weatherService: WeatherService) {
+  }
 
   ngOnInit(): void {
     this.userSubscription = this.userService.getUser().subscribe(user => {
       this.user = user;
-      this.fetchWeatherData();
-      this.startWeatherUpdateInterval();
+      this.weatherSubscription = this.weatherService.initWeatherUpdate(this.user.location.coordinates)
+        .subscribe(weather => {
+          this.weather = weather;
+          this.isLoading = false;
+        });
     });
 
     const savedUsers = localStorage.getItem('users');
@@ -143,25 +146,6 @@ export class UserWeatherComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
     this.weatherSubscription.unsubscribe();
-    this.weatherUpdateInterval.unsubscribe();
-  }
-
-  fetchWeatherData(): void {
-    this.weatherSubscription = this.weatherService.getWeatherByCoordinates(this.user.location.coordinates).subscribe(weather => {
-      this.weather = weather;
-      console.log(weather);
-      this.isLoading = false;
-    });
-  }
-
-  startWeatherUpdateInterval(): void {
-    this.weatherUpdateInterval = interval(300000)
-      .pipe(
-        switchMap(() => this.weatherService.getWeatherByCoordinates(this.user.location.coordinates))
-      )
-      .subscribe(weather => {
-        this.weather = weather;
-      });
   }
 
   save(): void {

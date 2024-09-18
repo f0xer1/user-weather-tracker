@@ -1,19 +1,35 @@
-<div class="rounded-4 p-3" >
+<div class="rounded-4 p-3">
   <div class="d-flex align-items-center">
     <div class="flex-grow-1">
       <div>
-        <strong>Temperature:</strong> {{weather.currentWeather.temperature }} °C
+        <strong>Temperature:</strong> {{ weather.currentWeather.temperature }} °C
       </div>
       <div>
-        <strong>Date:</strong> {{ weatherDate }}
+        <strong>Time:</strong> {{ weatherDate }} GMT
       </div>
       <div>
-        <p class="text-muted mb-0">Highest: {{weatherHighestTemperature}}</p>
-        <p class="text-muted mb-0">Lowest: {{weatherLowestTemperature}}</p>
+        <p class=" mb-0"><strong>Min/Max:</strong> {{ weatherLowestTemperature }}°C/{{ weatherHighestTemperature }}°C
+        </p>
       </div>
     </div>
-    <div class="position-relative ms-auto ">
-      <img [src]="weatherIcon" class="border-0 bg-info" width="60" height="60" alt="Weather picture" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <div class="position-relative ms-auto">
+      <img [src]="weatherIcon" class="border-0 bg-info" width="60" height="60" alt="Weather picture"
+           style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    </div>
+  </div>
+  <div class="container mt-3">
+    <h5 class="mb-3">Hourly forecast</h5>
+    <div class="overflow-auto">
+      <div class="d-flex flex-nowrap" style="width: fit-content;">
+        <div class="card me-3 flex-shrink-0" style="width: 150px;" *ngFor="let entry of hourlyWeather">
+          <div class="card-body text-center">
+            <h6 class="card-title">{{ entry[0] }}</h6>
+            <p class="card-text">
+              <i class="bi bi-thermometer-half me-1"></i>{{ entry[1] }}°C
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

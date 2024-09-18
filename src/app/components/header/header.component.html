@@ -1,12 +1,12 @@
 <div>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a routerLink="/" class="navbar-brand">UserWeather</a>
+    <a [routerLink]="'user-weather'" class="navbar-brand">UserWeather</a>
     <div class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="router.url !== '/saved-users-list'">
-        <a routerLink="/saved-users-list" class="nav-link">Saved</a>
+      <li class="nav-item">
+        <a [routerLink]="'user-weather'" class="nav-link">UserModel</a>
       </li>
-      <li class="nav-item" *ngIf="router.url !== '/user-weather'">
-        <a routerLink="/user-weather" class="nav-link">UserModel</a>
+      <li class="nav-item">
+        <a [routerLink]="'saved-users-list'" class="nav-link">Saved</a>
       </li>
     </div>
   </nav>

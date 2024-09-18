@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {NgIf} from "@angular/common";
 
@@ -13,5 +13,10 @@ import {NgIf} from "@angular/common";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  constructor(public router: Router) {}
+  constructor(public router: Router) {
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
+  }
 }

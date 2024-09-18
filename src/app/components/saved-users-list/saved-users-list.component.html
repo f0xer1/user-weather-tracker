@@ -1,9 +1,19 @@
 <div class="container-fluid py-5">
-  <div class="row g-4 justify-content-center">
+  <div *ngIf="isLoading" class="row justify-content-center" style="min-height: 300px;">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading" class="row g-4 justify-content-center">
     <div class="col-12 col-md-6 col-lg-5 d-flex" *ngFor="let user of users">
-      <div class="card shadow-lg border-0 rounded-lg overflow-hidden flex-fill d-flex flex-column bg-light text-dark" style="background-color: #f0f0f0; color: #333;">
+      <div class="card shadow-lg border-0 rounded-lg overflow-hidden flex-fill d-flex flex-column bg-light text-dark"
+           style="background-color: #f0f0f0; color: #333;">
         <div class="card-body p-4 flex-grow-1">
           <app-user [user]="user"></app-user>
+          <app-weather *ngIf="userWeather[user.email]" [weather]="userWeather[user.email]"></app-weather>
         </div>
       </div>
     </div>

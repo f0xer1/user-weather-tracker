@@ -37,7 +37,7 @@ export class UserMapComponent implements OnInit {
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
         userMarker
       ],
-      zoom: 10,
+      zoom: 4,
       center: latLng(this.lat, this.lng)
     };
   }

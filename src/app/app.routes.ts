@@ -1,15 +1,13 @@
-import { Routes } from '@angular/router';
-import {UserWeatherComponent} from "./components/user-weather/user-weather.component";
-import {SavedUsersListComponent} from "./components/saved-users-list/saved-users-list.component";
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'user-weather',
-    component: UserWeatherComponent
+    loadComponent: () => import('./components/user-weather/user-weather.component').then(m => m.UserWeatherComponent),
   },
   {
     path: 'saved-users-list',
-    component: SavedUsersListComponent
+    loadComponent: () => import('./components/saved-users-list/saved-users-list.component').then(m => m.SavedUsersListComponent),
   },
   {
     path: '',
