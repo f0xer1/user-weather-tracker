@@ -29,10 +29,13 @@ export class SavedUsersListComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+
     const savedUsers = localStorage.getItem('users');
     if (savedUsers) {
       this.users = JSON.parse(savedUsers);
       this.loadWeatherForUsers();
+    }else {
+      this.isLoading = false;
     }
   }
   ngOnDestroy(): void {
