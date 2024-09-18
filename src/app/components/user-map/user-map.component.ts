@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {icon, latLng, marker, tileLayer} from 'leaflet';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { User } from '../../models/user/user.model';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import {User} from '../../models/user/user.model';
 
 @Component({
   selector: 'app-user-map',
@@ -14,7 +14,6 @@ export class UserMapComponent implements OnInit {
   @Input() user!: User;
   lat: number = 0;
   lng: number = 0;
-
   options: any;
 
   ngOnInit() {
@@ -34,7 +33,7 @@ export class UserMapComponent implements OnInit {
 
     this.options = {
       layers: [
-        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
+        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '...'}),
         userMarker
       ],
       zoom: 4,

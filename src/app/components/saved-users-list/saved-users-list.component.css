@@ -1,0 +1,12 @@
+.loading-container {
+  min-height: 300px;
+}
+
+.no-users-container {
+  min-height: 300px;
+}
+
+.custom-card {
+  background-color: #f0f0f0;
+  color: #333;
+}

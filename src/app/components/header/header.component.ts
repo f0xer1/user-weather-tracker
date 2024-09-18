@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -13,6 +13,4 @@ import {NgIf} from "@angular/common";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  constructor(public router: Router) {
-  }
 }

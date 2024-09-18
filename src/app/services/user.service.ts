@@ -24,8 +24,6 @@ export class UserService {
     if (!savedUsers.some(u => u.email === user.email)) {
       savedUsers.push(user);
       localStorage.setItem(this.storageKey, JSON.stringify(savedUsers));
-    } else {
-      console.log("UserModel already saved.");
     }
   }
 

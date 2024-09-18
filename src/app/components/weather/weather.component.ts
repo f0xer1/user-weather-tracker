@@ -1,8 +1,8 @@
-import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {WeatherData} from "../../models/weather/weather.model";
 import {WeatherService} from "../../services/weather.service";
-import {Subscription} from "rxjs";
 import {NgForOf} from "@angular/common";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-weather',
@@ -13,33 +13,30 @@ import {NgForOf} from "@angular/common";
   ],
   templateUrl: './weather.component.html'
 })
-export class WeatherComponent implements OnDestroy, OnChanges {
+export class WeatherComponent implements OnChanges {
   @Input() weather!: WeatherData;
   weatherIcon: string = '';
   weatherLowestTemperature: number = 0;
   weatherHighestTemperature: number = 0;
   weatherDate: string = "";
   hourlyWeather: [string, number][] = [];
-
-  private weatherSubscription: Subscription = new Subscription();
+  private destroyRef = inject(DestroyRef);
 
   constructor(private weatherService: WeatherService) {
   }
 
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['weather'] && changes['weather'].currentValue) {
+    const {weather} = changes;
+    if (weather && weather.currentValue) {
       this.updateWeatherData();
     }
   }
 
-  ngOnDestroy(): void {
-    this.weatherSubscription.unsubscribe();
-  }
-
   private updateWeatherData(): void {
     if (this.weather) {
-      this.weatherSubscription = this.weatherService.getWeatherIcon(this.weather).subscribe(icon => this.weatherIcon = icon);
+      this.weatherService.getWeatherIcon(this.weather).pipe(
+        takeUntilDestroyed(this.destroyRef)
+      ).subscribe(icon => this.weatherIcon = icon);
 
       this.weatherDate = this.weather.currentWeather.time
         .toString()

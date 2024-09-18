@@ -4,8 +4,9 @@ import { User } from "../../models/user/user.model";
 @Component({
   selector: 'app-user',
   standalone: true,
-  templateUrl: './user.component.html'
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  @Input() user!: User;
+  @Input({ required: true }) user!: User;
 }

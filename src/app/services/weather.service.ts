@@ -17,12 +17,13 @@ export class WeatherService {
   getWeatherIcon(weather: WeatherData): Observable<string> {
     const timeOfDay = weather.currentWeather.isDay === 1 ? 'day' : 'night';
     const codeStr = weather.currentWeather.weathercode.toString();
-    return of((WEATHER_ICONS as any)[codeStr][timeOfDay]?.image || '');
+    const icon = WEATHER_ICONS[codeStr];
+    return of(icon ? icon[timeOfDay].image : '');
   }
 
   getWeatherByCoordinates(coordinates: Coordinates): Observable<WeatherData> {
     const weatherUrl = `${environment.WEATHER_BASE_URL}?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current_weather=true&hourly=temperature_2m`;
-    return this.http.get<any>(weatherUrl).pipe(
+    return this.http.get<WeatherData>(weatherUrl).pipe(
       map(response => {
         return this.convertObjectKeysToCamelCase(response) as WeatherData;
       })
@@ -50,7 +51,7 @@ export class WeatherService {
     return s.replace(/_./g, match => match.charAt(1).toUpperCase());
   }
 
-  private convertObjectKeysToCamelCase(obj: any): any {
+  private convertObjectKeysToCamelCase(obj: WeatherData): any {
     if (obj == null) return obj;
 
     if (Array.isArray(obj)) {
@@ -66,6 +67,4 @@ export class WeatherService {
 
     return obj;
   }
-
-
 }

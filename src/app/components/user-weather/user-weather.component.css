@@ -1,0 +1,26 @@
+
+.min-height-300 {
+  min-height: 300px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.max-width-900 {
+  max-width: 900px;
+}
+
+.custom-card {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.custom-button {
+  border-color: #ccc;
+  color: #333;
+}
+
+.custom-map-height {
+  height: 100%;
+}

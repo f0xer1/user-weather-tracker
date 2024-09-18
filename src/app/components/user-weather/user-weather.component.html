@@ -1,14 +1,13 @@
 <div class="container-fluid py-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-xl-10 d-flex justify-content-center align-items-center" style="min-height: 300px;">
-      <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100%;">
+    <div class="col-12 col-xl-10 d-flex justify-content-center align-items-center min-height-300">
+      <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center full-height">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
 
-      <div *ngIf="!isLoading" class="card shadow-lg border-0 rounded-lg overflow-hidden mx-auto"
-           style="max-width: 900px; background-color: #f0f0f0; color: #333;">
+      <div *ngIf="!isLoading" class="card shadow-lg border-0 rounded-lg overflow-hidden mx-auto max-width-900 custom-card">
         <div class="row g-0">
           <div class="col-md-7">
             <div class="card-body p-4">
@@ -16,12 +15,12 @@
               <app-weather [weather]="weather"></app-weather>
 
               <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-outline-secondary" (click)="save()" style="border-color: #ccc; color: #333;">Save</button>
+                <button class="btn btn-outline-secondary custom-button" (click)="save()">Save</button>
               </div>
             </div>
           </div>
           <div class="col-md-5">
-            <app-user-map [user]="user" style="height: 100%;"></app-user-map>
+            <app-user-map [user]="user" class="custom-map-height"></app-user-map>
           </div>
         </div>
       </div>
