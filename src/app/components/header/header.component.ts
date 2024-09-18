@@ -15,8 +15,4 @@ import {NgIf} from "@angular/common";
 export class HeaderComponent {
   constructor(public router: Router) {
   }
-
-  isActive(route: string): boolean {
-    return this.router.url === route;
-  }
 }
